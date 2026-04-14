@@ -1,149 +1,109 @@
-# BaraQuiz
+# BaraQuiz ! — L'Arène des Baraquis
 
-Application de quiz interactive dédiée à la culture des Hauts-de-France, réalisée dans le cadre du module de développement web de M. Cartailler.
+[![Tech](https://img.shields.io/badge/Stack-PHP%20%7C%20MySQL%20%7C%20JS-ffc107?style=for-the-badge)](https://github.com/)
+[![University](https://img.shields.io/badge/Projet-Universitaire-ef4444?style=for-the-badge)](https://www.telecom-st-etienne.fr/)
 
-> Prouve que t'es un vrai Baraqui d'ichi.
-
----
-
-## Présentation
-
-BaraQuiz est une application web full-stack qui propose un quiz de 10 questions aléatoires parmi une banque de 400+, réparties sur 10 thèmes couvrant le patrimoine, les traditions et la culture du Nord de la France. Le joueur tire une "frite du destin" pour découvrir son thème, puis répond aux questions dans un temps limité.
-
-**Direction Artistique** : Néo-Brutalisme — couleurs primaires saturées, bordures épaisses, ombres portées plates, typographies grasses. L'esthétique s'inspire de l'univers des baraques à frites et du Carnaval de Dunkerque.
+> **"Prouve que t'es un vrai Baraqui d'ichi !"** > Une immersion ludique et décalée dans la culture des Hauts-de-France.
 
 ---
 
-## Stack technique
+## Le Concept
 
-| Couche | Technologies |
-|---|---|
-| **Frontend** | HTML5, Tailwind CSS (CDN), Vanilla JavaScript |
-| **Backend** | PHP 8.x, PDO |
-| **Base de données** | MySQL (utf8mb4) |
-| **Serveur local** | WAMP / MAMP / XAMPP |
+**BaraQuiz** est une application web interactive née d'un défi : allier la rigueur du développement web full-stack à la chaleur humaine du Nord de la France. Réalisé dans le cadre du module de M. Cartailler, ce projet propose une expérience de quiz dynamique où le hasard et la culture régionale se rencontrent autour d'un cornet de frites.
 
----
-
-## Fonctionnalités
-
-- **Authentification** : inscription / connexion avec hachage SHA-512 + sel statique
-- **Tirage de thème** : animation "frite interactive" + roulette slot machine
-- **Quiz 10 questions** : timer 15s, feedback visuel immédiat, anecdotes culturelles
-- **Score serveur** : validation côté serveur (anti-triche), récapitulatif détaillé
-- **Profil joueur** : score global (anneau SVG animé) + diagramme en barres par thème
-- **Support média** : questions images intégrées
-- **Responsive** : mobile-first, breakpoints en hauteur pour le quiz
-- **Notes d'intention** : section documentaire avec liens vers la genèse du projet
+### Direction Artistique : "Carnival Pop"
+Le projet adopte un style **Néo-Brutalisme** assumé : 
+- **Couleurs saturées** : Jaune Frite (`#FFC107`), Rouge Carnaval (`#EF4444`), Bleu Ciel (`#0EA5E9`).
+- **Design Radical** : Contours noirs épais, ombres portées massives, et typographies "bouncy" (`Lilita One`).
+- **Inspiration** : L'esthétique visuelle des fêtes foraines et des baraques à frites traditionnelles.
 
 ---
 
-## Structure du projet
+## Fonctionnalités Clés
 
-```
-Nord/
-├── index.php              # Application principale (SPA-like, 3 vues)
-├── login.php              # Page connexion / inscription
-├── profil.php             # Profil joueur (Le Carnet du Baraqui)
-├── db.php                 # Config BDD + auto-initialisation des tables
-├── questions.sql          # Dump SQL : 400+ questions avec anecdotes
-├── update_audio.sql       # Script de neutralisation des questions audio
-├── api/
-│   ├── connexion.php      # Endpoint POST : authentification
-│   ├── inscription.php    # Endpoint POST : création de compte
-│   ├── get_quiz.php       # Endpoint GET : 10 questions aléatoires par thème
-│   ├── save_stats.php     # Endpoint POST : validation + sauvegarde des résultats
-│   └── logout.php         # Déconnexion / destruction de session
-├── assets/
-│   ├── img/               # Images (favicon, cornet de frites, illustrations)
-│   └── audio/             # (réservé, non utilisé actuellement)
-└── README.md
-```
+- **La Frite du Destin** : Une mécanique de tirage au sort unique. Cliquez sur une frite pour déclencher la roulette des thèmes.
+- **Base de données massive** : Plus de 400 questions sourcées couvrant 10 thématiques (du Patois au Bassin Minier).
+- **Système de Jeu Dynamique** : Timer de 15 secondes, feedbacks visuels immédiats et anecdotes culturelles après chaque réponse.
+- **Le Carnet du Baraqui** : Un espace profil avec un anneau de score global animé et des statistiques détaillées par thématique.
+- **Sécurité Académique** : Authentification complète avec hachage SHA-512 et grain de sel statique.
+- **Interface Responsive** : Une expérience pensée pour être fluide sur mobile comme sur desktop.
 
 ---
 
-## Installation
+## Stack Technique
+
+| Couche | Technologie | Rôle |
+| :--- | :--- | :--- |
+| **Frontend** | Vanilla JS / Tailwind CSS | Logique de jeu (SPA-like), Animations CSS, UI Néo-Brutaliste |
+| **Backend** | PHP 8.2 (PDO) | API REST, Gestion des sessions, Validation des scores |
+| **Base de données** | MySQL | Stockage des questions, statistiques et utilisateurs |
+| **Outils** | Git Bash | Versionnage et déploiement |
+
+---
+
+## Installation & Déploiement
 
 ### Prérequis
-- Serveur WAMP, MAMP ou XAMPP avec PHP 8+ et MySQL
-- Accès à phpMyAdmin (optionnel, la BDD se crée automatiquement)
+- Un serveur local (WAMP, MAMP, XAMPP ou Laragon) avec **PHP 8.0+** et **MySQL**.
 
-### Démarrage
-
-1. **Cloner le dépôt** dans le répertoire du serveur web :
+### Installation rapide
+1. **Cloner le projet** dans votre répertoire `www` ou `htdocs` :
    ```bash
-   git clone https://github.com/votre-repo/baraquiz.git /chemin/vers/www/Nord
+   git clone https://github.com/votre-compte/baraquiz.git
    ```
 
-2. **Démarrer le serveur** (Apache + MySQL)
+2. **Configuration** : Renommez `config.example.php` en `db.php` (pour des raisons de sécurité, ce fichier est ignoré par Git via le `.gitignore`). Renseignez vos identifiants MySQL à l'intérieur.
 
-3. **Accéder à l'application** :
-   ```
-   http://localhost/Nord/
-   ```
-
-Au premier accès, `db.php` :
-- Crée la base de données `baraquiz`
-- Crée les tables (`utilisateurs`, `user_answers`, `questions`)
-- Importe automatiquement les 400+ questions depuis `questions.sql`
-
-4. **Créer un compte** via le formulaire d'inscription, puis se connecter.
+3. **Initialisation Magique** : Lancez simplement l'URL `http://localhost/baraquiz/` dans votre navigateur. Le script `db.php` s'occupe de tout :
+   - Création de la base de données `baraquiz`.
+   - Création des tables (`utilisateurs`, `questions`, `user_answers`).
+   - Importation automatique des 400+ questions.
 
 ---
 
-## Architecture
+## Notes d'intention
 
-### Frontend (index.php)
+### Genèse & Projet Étudiant
 
-Application SPA-like avec 3 vues HTML togglées par JavaScript :
+BaraQuiz est l'aboutissement d'un module de développement web dispensé par M. Cartailler. Le défi était de concevoir une application web complète en maîtrisant la séparation entre un Frontend dynamique et un Backend robuste. Ce projet m'a permis de mettre en pratique l'utilisation des API REST minimalistes en PHP et la manipulation avancée du DOM en JavaScript.
 
-1. **Accueil** — Hero, CTA, scroll libre vers les notes d'intention
-2. **Tirage de frites** — Animation interactive, roulette de thème
-3. **Quiz** — Questions, timer, anecdotes, écran de résultats
+### Une histoire de Terroir
 
-Le scroll du body est verrouillé pendant le jeu (`.scroll-locked`) et libéré sur l'accueil et les résultats.
+Plutôt que de réaliser un quiz générique, j'ai choisi de mettre à l'honneur ma région d'origine : les Hauts-de-France. BaraQuiz célèbre la diversité de notre patrimoine : de la ferveur des stades à la subtilité du patois, en passant par l'histoire des mines ou la folie du Carnaval de Dunkerque. C'est une démonstration qu'on peut allier rigueur algorithmique et identité culturelle forte.
 
-### Backend (api/)
+### Sous le capot
 
-API REST minimaliste en PHP :
-- Les réponses sont envoyées en JSON au serveur (`save_stats.php`)
-- Le serveur recalcule le score en comparant les réponses avec la BDD
-- Le score affiché est celui du serveur (pas du client) pour éviter la triche
+L'application respecte les protocoles de sécurité vus en cours, notamment le hachage des mots de passe. Le système de statistiques ("Le Carnet du Baraqui") agrège les données SQL pour fournir un suivi de progression précis, prouvant qu'un backend sérieux peut faire tourner une application ludique.
 
-### Base de données
+---
+
+## Structure des fichiers
 
 ```
-utilisateurs (id, prenom, nom, mail, mdp)
-    └── user_answers (id, id_utilisateur, theme, is_correct, total, date_partie)
-
-questions (id, theme, type_media, url_media, question, reponse_A..D, bonne_reponse, anecdote)
+BaraQuiz/
+├── index.php             # Point d'entrée unique (Logique SPA)
+├── login.php             # Authentification (Inspiration Néo-Brutaliste)
+├── profil.php            # Dashboard utilisateur & Statistiques
+├── db.php                # Cerveau de la BDD (Auto-install)
+├── api/
+│   ├── get_quiz.php      # Livraison de 10 questions aléatoires
+│   ├── save_stats.php    # Sauvegarde sécurisée des résultats
+│   └── connexion.php     # Logique de sécurité PHP
+├── assets/
+│   ├── img/              # Logos, icônes et images de questions
+│   └── favicon.ico       
+└── sql/
+    └── questions.sql     # Le gisement de culture régionale (400+ questions)
 ```
 
 ---
 
-## Les 10 thèmes
+## Crédits & Licence
 
-| Thème | Contenu |
-|---|---|
-| Gastronomie | Fricadelle, welsh, maroilles, baraques à frites |
-| Carnaval de Dunkerque | Bandes, jets de harengs, chansons |
-| Patois | Ch'ti, picard, expressions du Nord |
-| Géographie | Villes, fleuves, paysages des Hauts-de-France |
-| Braderie de Lille | Le plus grand marché aux puces d'Europe |
-| Histoire & Mines | Bassins miniers, patrimoine UNESCO |
-| Paris-Roubaix & Sport | L'Enfer du Nord, LOSC, clubs mythiques |
-| Célébrités du Nord | De Gaulle, Dany Boon, Pierre Bachelet |
-| Cinéma & Culture | Bienvenue chez les Ch'tis, Germinal, les Corons |
-| Traditions & Folklore | Géants, ducasses, P'tit Quinquin, estaminets |
+**Développeur** : Venet Viktor
 
----
+**Module** : Développement Web - Télécom Saint-Étienne
 
-## Crédits
+**Enseignant** : M. Cartailler
 
-Projet universitaire — Module Développement Back-end, Télécom Saint-Étienne
-
----
-
-## Licence
-
-Projet académique. Tous droits réservés.
+> Projet réalisé par amour pour le Nord et pour un module universitaire. Tous droits de "Baraqui" réservés.
