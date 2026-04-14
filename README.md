@@ -140,7 +140,7 @@ questions (id, theme, type_media, url_media, question, reponse_A..D, bonne_repon
 
 ## Crédits
 
-Projet universitaire — Module Développement Web, M. Cartailler.
+Projet universitaire — Module Développement Back-end, Télécom Saint-Étienne
 
 ---
 
